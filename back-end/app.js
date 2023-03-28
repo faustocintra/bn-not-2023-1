@@ -23,4 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+/*************************
+ * ROTAS
+ *************************/
+
+const customersRouter = require('./routes/customers')
+app.use('/customers', customersRouter)
+
 module.exports = app;
