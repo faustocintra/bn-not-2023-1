@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/customer')
+const controller = require('../controllers/sale')
 
 router.post('/', controller.create)
 router.get('/', controller.retrieveAll)

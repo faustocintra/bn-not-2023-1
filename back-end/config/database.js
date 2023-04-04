@@ -20,8 +20,11 @@ module.exports = function() {
     useUnifiedTopology: true
   })
 
+  mongoose.set('debug', true)
+
   mongoose.connection.on('connected', () =>
     console.log('=> MONGOOSE! conectado com sucesso ao servidor')
+    
   )
 
   mongoose.connection.on('disconnected', () =>
