@@ -14,7 +14,25 @@ const schema = mongoose.Schema({
     type: mongoose.ObjectId,  // Tipo para chave estrangeira
     ref: 'Customer',          // Model estrangeiro
     required: true
-  }
+  },
+  // Vetor de subdocumentos
+  items: [{
+    order: {
+      type: Number,
+      required: true,
+      min: 1
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      min: 0.01
+    },
+    product: {
+      type: mongoose.ObjectId,
+      ref: 'Product',
+      required: true
+    }
+  }]
 })
 
 /*
