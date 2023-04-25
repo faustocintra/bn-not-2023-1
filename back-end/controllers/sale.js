@@ -71,10 +71,17 @@ controller.update = async (req, res) => {
       for(let item of req.body.items) {
         // Se o item tem _id, é porque já existe ~> É CASO DE ATUALIZAÇÃO
         if(item._id) {
-                    
-          // Procura cada propriedade no item de req.body e atualiza no documento
-          for(let prop in item) {
-            sale.items.id(item._id)[prop] = item[prop]
+
+          // Verifica se foi passada uma propriedade especial, chamada
+          // '$_delete', com o valor true e, nesse caso, deleta o subdocumento
+          if(item['$_delete'] === true) {
+            sale.items.id(item._id).deleteOne()
+          }
+          else {
+            // Procura cada propriedade no item de req.body e atualiza no documento
+            for(let prop in item) {
+              sale.items.id(item._id)[prop] = item[prop]
+            }
           }
         }
         // Item não existe ~> É caso de inserção
